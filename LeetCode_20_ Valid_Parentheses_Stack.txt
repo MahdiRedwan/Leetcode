@@ -1,0 +1,39 @@
+Basic stack:
+class Solution(object):
+    def isValid(self, s):
+        stack = []  # initialize empty stack
+
+        for ch in s:  # read each character one by one
+
+            # Step 1: Push opening brackets
+            if ch == '(' or ch == '{' or ch == '[':
+                stack.append(ch)
+
+            # Step 2: Handle closing brackets
+            elif ch == ')':
+                if not stack or stack[-1] != '(':  # Stack empty or mismatch
+                    return False
+                stack.pop()  # matched, remove last opening
+
+            elif ch == '}':
+                if not stack or stack[-1] != '{':
+                    return False
+                stack.pop()
+
+            elif ch == ']':
+                if not stack or stack[-1] != '[':
+                    return False
+                stack.pop()
+
+        # Final Step: Check if any opening brackets left unmatched
+        if not stack:
+            return True  # stack is empty, all matched properly
+        else:
+            return False
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
+
+// There is a shorter approach with hashmap we will get later on. 
